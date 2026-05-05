@@ -197,7 +197,7 @@ microbenchmark::microbenchmark(
 | C/C++ Header |        1 | 0.05 |  24 | 0.02 |          16 | 0.07 |       30 | 0.06 |
 | SUM          |       10 | 0.50 | 684 | 0.50 |         122 | 0.50 |      231 | 0.50 |
 
-{cloc} 📦 metrics for tdigest
+Generated with [`cloc`](https://cran.r-project.org/package=cloc).
 
 ## Code of Conduct
 

@@ -7,8 +7,9 @@ was no longer responding to CRAN's reminders. The sole technical reason
 flagged in the final CRAN checks was a `WARN` for use of the non-API entry
 point `DATAPTR` in compiled code on r-devel flavours.
 
-I have adopted the package with the agreement of the community (see GitHub
-issue #6 in the source repository) and am submitting `0.4.3`, which:
+I am maintaining a fork of the package with the goal of getting it back
+onto CRAN (see GitHub issue #6 in the source repository for related
+community discussion) and am submitting `0.4.3`, which:
 
 * Replaces every `DATAPTR` use in `src/tdigest-main.c` with the public
   `REAL()` accessor (for non-ALTREP / freshly-allocated vectors) and

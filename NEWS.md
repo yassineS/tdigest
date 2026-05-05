@@ -2,9 +2,9 @@
 
 ## Maintainer change
 
-* Yassine Souilmi has taken over maintenance with the agreement of the
-  community after the package was archived from CRAN. The original author
-  Bob Rudis remains as `aut`.
+* Yassine Souilmi is maintaining a fork of the package, with plans to
+  get it back onto CRAN after its 2026-02-07 archival. The original
+  author Bob Rudis remains as `aut`.
 
 ## CRAN compliance
 

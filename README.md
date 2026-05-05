@@ -3,13 +3,10 @@
 [![Project Status: Active – The project has reached a stable, usable
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-[![Signed
-by](https://img.shields.io/badge/Keybase-Verified-brightgreen.svg)](https://keybase.io/hrbrmstr)
-![Signed commit
-%](https://img.shields.io/badge/Signed_Commits-3%25-lightgrey.svg)
+[![R-CMD-check](https://github.com/yassineS/tdigest/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/yassineS/tdigest/actions/workflows/R-CMD-check.yaml)
+[![test-coverage](https://github.com/yassineS/tdigest/actions/workflows/test-coverage.yaml/badge.svg)](https://github.com/yassineS/tdigest/actions/workflows/test-coverage.yaml)
+[![CodeFactor](https://www.codefactor.io/repository/github/yassines/tdigest/badge)](https://www.codefactor.io/repository/github/yassines/tdigest)
 
-[![cran
-checks](https://cranchecks.info/badges/worst/tdigest.png)](https://cranchecks.info/pkgs/tdigest)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/tdigest.png)](https://www.r-pkg.org/pkg/tdigest)
 ![Minimal R

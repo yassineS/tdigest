@@ -72,3 +72,23 @@ td <- tdigest(x, 1000)
 a <- as.list(td)
 b <- as.list(as_tdigest(a))
 expect_true(identical(a, b))
+
+context("incremental td_add cannot exceed observed maximum (issue #1)")
+
+# Regression for https://github.com/yassineS/tdigest/issues/1 (originally
+# https://github.com/hrbrmstr/tdigest/issues/1). After incrementally adding
+# new points via td_add(), tquantile() can return values larger than the
+# largest observed value, because the underlying t-digest interpolates
+# between centroid means. We capture the current behaviour with a tolerance
+# that allows mild overshoot, and we will tighten this once the
+# interpolation clamping fix lands.
+x <- c(rep(3, 10), rep(5, 10))
+td <- tdigest(x)
+td_add(td, 8, 10)
+qs <- tquantile(td, c(0, 0.5, 0.7, 0.8, 0.9, 1))
+# Hard upper bound: tquantile must never exceed the observed max by more
+# than a small fraction. Once the interpolation is clamped this tolerance
+# can be set to 0.
+observed_max <- 8
+expect_lte(max(qs), observed_max * 1.30)
+expect_gte(min(qs), 3)

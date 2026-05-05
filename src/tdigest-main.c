@@ -1,8 +1,6 @@
 #include <R.h>
 #include <Rinternals.h>
 #include <Rdefines.h>
-#include <R_ext/Altrep.h>
-#include <R_ext/Itermacros.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -22,7 +20,10 @@
 #define O_MEANS 0
 #define O_COUNTS 1
 
-#define SAFE_REAL(x, i) (((double *)DATAPTR(x))[i])
+/* ALTREP-safe element access for REALSXP: REAL_ELT respects ALTREP without
+ * forcing materialisation. Replaces the previous DATAPTR-based macro flagged
+ * by CRAN for using a non-API entry point. */
+#define SAFE_REAL(x, i) REAL_ELT((x), (i))
 
 void check_is_xptr(SEXP s) {
   if (TYPEOF(s) != EXTPTRSXP) {
@@ -71,7 +72,7 @@ SEXP Rtdig(SEXP vec, SEXP compression) {
         start = end + 1;
       }
     } else {
-      double *data = (double *)DATAPTR(vec);
+      const double *data = REAL(vec);
       for (R_xlen_t i = 0; i < n; i++) {
         if (!ISNAN(data[i])) td_add(t, data[i], 1);
       }
@@ -91,10 +92,9 @@ SEXP Rtquant(SEXP tdig, SEXP probs) {
   if (t) {
     R_xlen_t n = xlength(probs);
     SEXP out = PROTECT(Rf_allocVector(REALSXP, n));
-    double *out_data = (double *)DATAPTR(out);
-    double *probs_data = (double *)DATAPTR(probs);
+    double *out_data = REAL(out);
     for (R_xlen_t i = 0; i < n; i++) {
-      out_data[i] = td_value_at(t, probs_data[i]);
+      out_data[i] = td_value_at(t, REAL_ELT(probs, i));
     }
     UNPROTECT(1);
     return out;
@@ -180,7 +180,7 @@ SEXP Rg_nodes_mean(SEXP from) {
   if (f) {
     int N = f->merged_nodes + f->unmerged_nodes;
     SEXP out = PROTECT(Rf_allocVector(REALSXP, N));
-    double *out_data = (double *)DATAPTR(out);
+    double *out_data = REAL(out);
     for (int i = 0; i < N; i++) {
       out_data[i] = f->nodes[i].mean;
     }
@@ -196,7 +196,7 @@ SEXP Rg_nodes_count(SEXP from) {
   if (f) {
     int N = f->merged_nodes + f->unmerged_nodes;
     SEXP out = PROTECT(Rf_allocVector(REALSXP, N));
-    double *out_data = (double *)DATAPTR(out);
+    double *out_data = REAL(out);
     for (int i = 0; i < N; i++) {
       out_data[i] = f->nodes[i].count;
     }
@@ -221,8 +221,8 @@ SEXP Rg_toR(SEXP from) {
 
     SEXP o_means = PROTECT(Rf_allocVector(REALSXP, N));
     SEXP o_counts = PROTECT(Rf_allocVector(REALSXP, N));
-    double *means_data = (double *)DATAPTR(o_means);
-    double *counts_data = (double *)DATAPTR(o_counts);
+    double *means_data = REAL(o_means);
+    double *counts_data = REAL(o_counts);
 
     for (int i = 0; i < N; i++) {
       means_data[i] = f->nodes[i].mean;
@@ -289,12 +289,10 @@ SEXP Rg_fromR(SEXP td_list) {
 
   SEXP o_means = VECTOR_ELT(node_list, O_MEANS);
   SEXP o_counts = VECTOR_ELT(node_list, O_COUNTS);
-  double *means_data = (double *)DATAPTR(o_means);
-  double *counts_data = (double *)DATAPTR(o_counts);
 
   for (int i = 0; i < N; i++) {
-    t->nodes[i].count = counts_data[i];
-    t->nodes[i].mean = means_data[i];
+    t->nodes[i].count = REAL_ELT(o_counts, i);
+    t->nodes[i].mean = REAL_ELT(o_means, i);
   }
 
   UNPROTECT(1);

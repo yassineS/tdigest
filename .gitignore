@@ -7,3 +7,17 @@ README_cache
 src/*.o
 src/*.so
 src/*.dll
+
+# build / check artefacts
+*.tar.gz
+/.Rcheck/
+/tdigest.Rcheck/
+/..Rcheck/
+
+# renv (the library is large; lockfile is committed)
+renv/library/
+renv/local/
+renv/cellar/
+renv/lock/
+renv/python/
+renv/staging/

@@ -1,3 +1,5 @@
+^renv$
+^renv\.lock$
 ^LICENSE\.md$
 ^.vscode$
 ^.*\.Rproj$
@@ -19,3 +21,8 @@
 ^cran-comments\.md$
 ^CRAN-RELEASE$
 ^\.build\.yml$
+^CLAUDE\.md$
+^\.github$
+^cran-comments\.md$
+^_pkgdown\.yml$
+^ROADMAP\.md$

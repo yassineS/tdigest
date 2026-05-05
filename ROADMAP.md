@@ -55,7 +55,7 @@ Closes once Phase 1 succeeds.
 
 ## Phase 3 — Hygiene
 
-* Move from `.travis.yml` / `.build.yml` (sourcehut) to GitHub-only CI.
+* ~~Move from `.travis.yml` / `.build.yml` (sourcehut) to GitHub-only CI.~~ done — legacy CI configs deleted.
 * Convert `README.qmd` build to a GHA workflow, drop the local cache files.
 * Replace the manually-tracked `roxygen2` line endings with a `make doc`
   target.

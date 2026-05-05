@@ -5,7 +5,8 @@ Version: 0.4.3
 Date: 2026-05-05
 Authors@R: c(
     person("Yassine", "Souilmi", email = "dev@ysouilmi.com",
-           role = c("cre", "ctb")),
+           role = c("cre", "ctb"),
+           comment = c(ORCID = "0000-0001-7543-4864")),
     person("Bob", "Rudis", email = "bob@rud.is", role = "aut",
            comment = c(ORCID = "0000-0001-5670-2640")),
     person("Ted", "Dunning", role = "aut",

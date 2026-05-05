@@ -88,9 +88,6 @@ GitHub Actions live under `.github/workflows/`:
 - `test-coverage.yaml` — codecov upload.
 - `lint.yaml` — `spelling::spell_check_package()` + `lintr::lint_package()`.
 
-The legacy `.travis.yml`, `.build.yml` (sourcehut) and `appveyor.yml` are
-kept for now but no longer trigger anywhere.
-
 ## Known issues being tracked
 
 See `ROADMAP.md`. The active algorithmic question is upstream issue #1

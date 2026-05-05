@@ -4,7 +4,7 @@
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![R-CMD-check](https://github.com/yassineS/tdigest/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/yassineS/tdigest/actions/workflows/R-CMD-check.yaml)
-[![test-coverage](https://github.com/yassineS/tdigest/actions/workflows/test-coverage.yaml/badge.svg)](https://github.com/yassineS/tdigest/actions/workflows/test-coverage.yaml)
+[![codecov](https://codecov.io/gh/yassineS/tdigest/branch/master/graph/badge.svg)](https://codecov.io/gh/yassineS/tdigest)
 [![CodeFactor](https://www.codefactor.io/repository/github/yassines/tdigest/badge)](https://www.codefactor.io/repository/github/yassines/tdigest)
 
 [![CRAN
